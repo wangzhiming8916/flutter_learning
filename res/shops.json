@@ -1,0 +1,56 @@
+[
+  [
+    {
+      "name": "CineArts at the Empire",
+      "address": "85 W Portal Ave",
+      "iconCode": 59610
+    },
+    {
+      "name": "The Castro Theater",
+      "address": "429 Castro St",
+      "iconCode": 59610
+    },
+    {
+      "name": "Alamo Drafthouse Cinema",
+      "address": "2550 Mission St",
+      "iconCode": 59610
+    },
+    {
+      "name": "Roxie Theater",
+      "address": "3117 16th St",
+      "iconCode": 59610
+    },
+    {
+      "name": "United Artists Stonestown Twin",
+      "address": "501 Buckingham Way",
+      "iconCode": 59610
+    },
+    {
+      "name": "AMC Metreon 16",
+      "address": "135 4th St #3000",
+      "iconCode": 59610
+    }
+  ],
+  [
+    {
+      "name": "K\"s Kitchen",
+      "address": "757 Monterey Blvd",
+      "iconCode": 58732
+    },
+    {
+      "name": "Emmy\"s Restaurant",
+      "address": "1923 Ocean Ave",
+      "iconCode": 58732
+    },
+    {
+      "name": "Chaiya Thai Restaurant",
+      "address": "272 Claremont Blvd",
+      "iconCode": 58732
+    },
+    {
+      "name": "La Ciccia",
+      "address": "291 30th St",
+      "iconCode": 58732
+    }
+  ]
+]
