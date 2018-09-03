@@ -96,18 +96,14 @@ class _InputDecorationSamplePageState extends BasePageState<InputDecorationSampl
       ),
     );
 
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 20.0),
-            mobileTextField,
-            SizedBox(height: 150.0),
-            form,
-          ],
-        ),
-      ),
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      children: <Widget>[
+        SizedBox(height: 20.0),
+        mobileTextField,
+        SizedBox(height: 150.0),
+        form,
+      ],
     );
   }
 
@@ -123,6 +119,12 @@ class _InputDecorationSamplePageState extends BasePageState<InputDecorationSampl
       builder: (context) => AlertDialog(
         title: Text('Alert'),
         content: Text('Email: $_email, password: $_password'),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('OK'),
+          ),
+        ],
       ),
     );
   }
