@@ -25,6 +25,7 @@ import '19_simple_animation.dart';
 import '20_signature_painter.dart';
 import '21_isolate.dart';
 import '22_song_list.dart';
+import '23_input_decoration.dart';
 
 void main() => runApp(MyApp());
 
@@ -77,6 +78,7 @@ class _MyHomePageState extends BasePageState<MyHomePage> {
     SignaturePage(title: 'Signature Painter'),
     IsolateSamplePage(title: 'Isolate Sample'),
     SongListPage(title: 'Song List'),
+    InputDecorationSamplePage(title: 'Input Decoration'),
   ];
   final TextStyle _biggerFont = const TextStyle(fontSize: 18.0);
 
