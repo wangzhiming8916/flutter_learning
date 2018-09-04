@@ -26,6 +26,8 @@ import '20_signature_painter.dart';
 import '21_isolate.dart';
 import '22_song_list.dart';
 import '23_input_decoration.dart';
+import '24_animated_logo.dart';
+import '25_grow_transition.dart';
 
 void main() => runApp(MyApp());
 
@@ -79,6 +81,8 @@ class _MyHomePageState extends BasePageState<MyHomePage> {
     IsolateSamplePage(title: 'Isolate Sample'),
     SongListPage(title: 'Song List'),
     InputDecorationSamplePage(title: 'Input Decoration'),
+    AnimatedLogoPage(title: 'Animated Logo'),
+    GrowTransitionPage(title: 'Grow Transition'),
   ];
   final TextStyle _biggerFont = const TextStyle(fontSize: 18.0);
 

@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '00_base_page.dart';
@@ -11,34 +13,56 @@ class SimpleAnimationPage extends BasePage {
 
 class _SimpleAnimationPageState extends BasePageState<SimpleAnimationPage>
     with TickerProviderStateMixin<SimpleAnimationPage> { // ignore: mixin_inherits_from_not_object
-  AnimationController _controller;
+  AnimationController _curveController;
   CurvedAnimation _curve;
+
+  AnimationController _rotationController;
+  Animation<double> _rotationCurve;
+  Animation<double> _rotation;
 
   @override
   void initState() {
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 1000),
-      vsync: this,);
-    _controller.animateTo(1.0, duration: const Duration(milliseconds: 1000));
-//    _controller.value = 1.0;
-    _curve = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
+    _curveController = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: this,
+    );
+    _curve = CurvedAnimation(parent: _curveController, curve: Curves.easeInOut);
+    _curveController.value = 1.0;
+
+    _rotationController = AnimationController(vsync: this);
+    _rotationCurve = CurvedAnimation(parent: _rotationController, curve: Curves.linear);
+    _rotation = Tween(begin: 0.0, end: 10.0).animate(_rotationCurve);
+
+    _rotationController.addListener(() {
+      setState(() {});
+      print('${_rotationController.value}, ${_rotationCurve.value}, ${_rotation.value}');
+    });
+    _rotationController.animateTo(1.0, duration: const Duration(seconds: 10));
+
     super.initState();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _curveController.dispose();
+    _rotationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
-      body: buildBody(context),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _controller.isCompleted ? _controller.reverse() : _controller.forward(),
-        child: Icon(Icons.brush),
+    return Theme(
+      data: Theme.of(context).copyWith(
+        scaffoldBackgroundColor: Colors.grey[850],
+      ),
+      child: Scaffold(
+        appBar: AppBar(title: Text(widget.title)),
+        body: buildBody(context),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => _curveController.isCompleted
+              ? _curveController.reverse() : _curveController.forward(),
+          child: Icon(Icons.brush),
+        ),
       ),
     );
   }
@@ -46,15 +70,31 @@ class _SimpleAnimationPageState extends BasePageState<SimpleAnimationPage>
   @override
   Widget buildBody(BuildContext context) {
     return Center(
-      child: FadeTransition(
-        opacity: _curve,
-        child: RotationTransition(
-          turns: _curve,
-          child: ScaleTransition(
-            scale: _curve,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.rotationZ(_rotation.value * math.pi * 2.0),
             child: FlutterLogo(size: 100.0),
           ),
-        ),
+          SizedBox(height: 50.0),
+          RotationTransition(
+            turns: _rotation,
+            child: FlutterLogo(size: 100.0),
+          ),
+          SizedBox(height: 50.0),
+          FadeTransition(
+            opacity: _curve,
+            child: RotationTransition(
+              turns: _curve,
+              child: ScaleTransition(
+                scale: _curve,
+                child: FlutterLogo(size: 100.0),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
