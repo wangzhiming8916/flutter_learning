@@ -212,9 +212,7 @@ class _ComplexGridState extends State<_ComplexGrid> {
                   photo: photo,
                   titleStyle: widget._titleStyle,
                   onBannerTap: (photo) {
-                    setState(() {
-                      photo.isFavorite = !photo.isFavorite;
-                    });
+                    setState(() => photo.isFavorite = !photo.isFavorite);
                   },
                 );
               }).toList(),
@@ -266,9 +264,7 @@ class GridPhotoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final image = GestureDetector(
-      onTap: () {
-        _showPhoto(context);
-      },
+      onTap: () => _showPhoto(context),
       child: Hero(
         key: Key(photo.assetName),
         tag: photo.tag,
@@ -286,9 +282,7 @@ class GridPhotoItem extends StatelessWidget {
 
     return GridTile(
       footer: GestureDetector(
-        onTap: () {
-          onBannerTap(photo);
-        },
+        onTap: () => onBannerTap(photo),
         child: Stack(
           children: <Widget>[
             Positioned.fill(
@@ -304,8 +298,10 @@ class GridPhotoItem extends StatelessWidget {
               subtitle: titleStyle == GridTitleStyle.twoLine
                   ? _GridTitleText(photo.caption) : null,
 //              backgroundColor: Colors.black45,
-              trailing: Icon(photo.isFavorite ? Icons.star : Icons.star_border,
-                  color: Colors.white),
+              trailing: Icon(
+                photo.isFavorite ? Icons.star : Icons.star_border,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
@@ -318,10 +314,10 @@ class GridPhotoItem extends StatelessWidget {
     Navigator.push(context, MaterialPageRoute<void>(
       builder: (BuildContext context) {
         return Scaffold(
+          backgroundColor: Colors.black,
           appBar: AppBar(title: Text(photo.title)),
           body: SizedBox.expand(
             child: Hero(
-              key: Key(photo.assetName),
               tag: photo.tag,
               child: GridPhotoViewer(photo: photo),
             ),
@@ -382,7 +378,7 @@ class _GridPhotoViewerState extends State<GridPhotoViewer>
   }
 
   @override
-  void dispose() {
+  void dpose() {
     _controller.dispose();
     super.dispose();
   }
@@ -406,7 +402,7 @@ class _GridPhotoViewerState extends State<GridPhotoViewer>
     setState(() {
       _previousScale = _scale;
       _normalizedOffset = (details.focalPoint - _offset) / _scale;
-      print('scale: $_scale, normalizedOffset: $_normalizedOffset');
+//      print('scale: $_scale, normalizedOffset: $_normalizedOffset');
       // The fling animation stops if an input gesture starts.
       _controller.stop();
     });
@@ -440,17 +436,14 @@ class _GridPhotoViewerState extends State<GridPhotoViewer>
       onScaleUpdate: _handleOnScaleUpdate,
       onScaleEnd: _handleOnScaleEnd,
       child: ClipRect(
-        child: Container(
-          color: Colors.black,
-          child: Transform(
-            transform: Matrix4.identity()
-              ..translate(_offset.dx, _offset.dy)
-              ..scale(_scale),
-            child: Image.asset(
-              widget.photo.assetName,
-              package: widget.photo.assetPackage,
-              fit: BoxFit.contain,
-            ),
+        child: Transform(
+          transform: Matrix4.identity()
+            ..translate(_offset.dx, _offset.dy)
+            ..scale(_scale),
+          child: Image.asset(
+            widget.photo.assetName,
+            package: widget.photo.assetPackage,
+            fit: BoxFit.contain,
           ),
         ),
       ),

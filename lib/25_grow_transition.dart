@@ -65,7 +65,7 @@ class GrowTransition extends StatelessWidget {
 
 class LogoWidget extends StatelessWidget {
   LogoWidget({Key key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -74,4 +74,3 @@ class LogoWidget extends StatelessWidget {
     );
   }
 }
-

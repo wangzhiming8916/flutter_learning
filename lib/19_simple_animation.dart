@@ -51,18 +51,14 @@ class _SimpleAnimationPageState extends BasePageState<SimpleAnimationPage>
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: Theme.of(context).copyWith(
-        scaffoldBackgroundColor: Colors.grey[850],
-      ),
-      child: Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
-        body: buildBody(context),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _curveController.isCompleted
-              ? _curveController.reverse() : _curveController.forward(),
-          child: Icon(Icons.brush),
-        ),
+    return Scaffold(
+      backgroundColor: Colors.grey[850],
+      appBar: AppBar(title: Text(widget.title)),
+      body: buildBody(context),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _curveController.isCompleted
+            ? _curveController.reverse() : _curveController.forward(),
+        child: Icon(Icons.brush),
       ),
     );
   }
