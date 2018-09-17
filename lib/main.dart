@@ -28,6 +28,8 @@ import '22_song_list.dart';
 import '23_input_decoration.dart';
 import '24_animated_logo.dart';
 import '25_grow_transition.dart';
+import '26_friendlychat.dart';
+import '27_netty.dart';
 
 void main() => runApp(MyApp());
 
@@ -83,6 +85,8 @@ class _MyHomePageState extends BasePageState<MyHomePage> {
     InputDecorationSamplePage(title: 'Input Decoration'),
     AnimatedLogoPage(title: 'Animated Logo'),
     GrowTransitionPage(title: 'Grow Transition'),
+    FriendlyChatPage(title: 'Friendly Chat'),
+    NettySmplePage(title: 'Netty Sample'),
   ];
   final TextStyle _biggerFont = const TextStyle(fontSize: 18.0);
 
